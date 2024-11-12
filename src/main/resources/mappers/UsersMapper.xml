@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kdt.fullstack.project.dao.UsersMapper">
+
+    <!-- loginRow --> 
+    <select id="loginRow" parameterType="kdt.fullstack.project.domain.UserRequestDTO" resultType="kdt.fullstack.project.domain.UserRequestDTO">
+        SELECT id, password, username
+        FROM users 
+        WHERE (id=#{id}) AND (password=#{password});
+    </select>
+
+    <!-- registerRow --> 
+    <insert id="registerRow" parameterType="kdt.fullstack.project.domain.UserRequestDTO">
+        INSERT INTO users(id, password, username, created)
+        VALUES (#{id}, #{password}, #{username}, now());
+    </insert>
+    
+    <select id="checkRow" parameterType="kdt.fullstack.project.domain.UserRequestDTO" resultType="kdt.fullstack.project.domain.UserRequestDTO">
+        SELECT id
+        FROM users 
+        WHERE (id=#{id});
+    </select>
+
+    
+
+</mapper>
